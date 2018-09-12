@@ -1,0 +1,8 @@
+a<-read.table("total_ordered.txt",head=T,row.names=1,sep="\t")
+dim(a)
+b<-log2(a+1)
+library(pheatmap)
+pdf(file="log(dmso)_ordered.pdf")
+data<-data.matrix(b)
+pheatmap(data,cluster_row=TRUE,clustering_method="average",cluster_col=TRUE,cellwidth=3,show_rownames=F,fontsize_col=6,las=2)
+dev.off()

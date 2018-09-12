@@ -1,0 +1,30 @@
+1.mapping
+mapping.py
+
+2.sam获得统计结果
+count_sam.py
+
+3.将mapping的细节每个探针的值合并为一个大的excel表格
+state_rasl_result_final.py
+
+4.去除stable median<5的列（此时的median没有将0全变为1）
+abnormal_samples_filtering.r
+
+5.normalizastion R.script
+#RASL_Seq_normalize.r
+ 
+6.计算每一列fc，但是将4个dmso变化来
+#get_fc_treat_vs_dmso.r
+
+7.对fc利用count大小进行过滤
+fc_filtered.r
+
+8.将大excel表格按药进行拆分得到各自的txt
+split_excel_to_files_by_compound.py
+paste.py
+
+9.运行gsea
+run_gsea.py
+
+10.提取出gsea里的数据，可以分成多份运行
+get_gsea_result_test.py

@@ -1,0 +1,44 @@
+treat<-read.table("total.txt",head=T,row.names=1)
+control<-read.table("Lane7_plate2_2000.txt",head=T,row.names=1)
+treat<-(log2(treat/as.matrix(control[,1]))+log2(treat/as.matrix(control[,2]))+log2(treat/as.matrix(control[,3]))+log2(treat/as.matrix(control[,4])))/4
+write.table(treat,"Lane7_plate2_2000_fc.txt",sep="\t")
+
+
+fc<-read.table("Lane7_plate2_2000_fc.txt",head=T,row.names=1,sep="\t")
+dmso<-read.table("Lane7_plate2_2000.txt",head=T,row.names=1,sep="\t")
+treat<-read.table("total.txt",head=T,row.names=1,sep="\t")
+stable<-read.table("total_stable_edit_rm_max_min_2000_2.txt",head=T,row.names=1,sep="\t")
+dmso1<-apply(dmso,1,mean)
+me<-apply(stable,2,median)
+dmso_cutoff<-as.numeric(dmso1)
+for (i in 1:140){
+    cutoff<-as.numeric(treat[,i])
+    indexi<-which(cutoff<=100*10/me[i] & dmso_cutoff<=10.46718083)
+    Timei <- rep(0, length(cutoff))
+    fc[indexi,i]<-as.numeric(Timei[indexi])
+}
+write.table(fc,"Lane7_plate2_2000_filtered_by_median5_both10.txt")
+
+for (i in 1:140){
+    cutoff<-as.numeric(fc[,i])
+    indexi<-which(cutoff <1 & cutoff >-1)
+    Timei <- rep(0, length(cutoff))
+    fc[indexi,i]<-as.numeric(Timei[indexi])
+}
+write.table(fc,"Lane7_plate2_2000_by_minor1to1_both10.txt")
+
+for (i in 1:140){
+    cutoff<-as.numeric(fc[,i])
+    indexi<-which(cutoff!=0)
+    Timei <- rep(10, length(cutoff))
+    fc[indexi,i]<-as.numeric(Timei[indexi])
+}
+write.table(fc,"Lane7_plate2_2000_modified_final_v2_both10.txt")
+
+a<-matrix(rep(1:140,2), nrow = 2)
+for (i in 1:140){
+    a[,i]<-table(fc[,i])
+}
+
+colnames(a) <- colnames(fc)
+write.table(a,"Lane7_plate2_2000_clasification_both10.txt")

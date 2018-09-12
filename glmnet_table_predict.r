@@ -1,0 +1,11 @@
+library(glmnet);
+set.seed(123);
+train.index = sample(nrow(iris), 0.7 * nrow(iris));
+train.x = as.matrix(iris[train.index, 1:4]);
+train.y = iris[train.index, 5];
+test.x = as.matrix(iris[-train.index, 1:4]);
+test.y = iris[-train.index, 5];
+model = cv.glmnet(train.x, train.y, family = "multinomial");
+pred.y = predict(model, test.x, type = "class");
+table(pred.y, test.y);
+print(round(predict(model, test.x, type = "response"), 5));
