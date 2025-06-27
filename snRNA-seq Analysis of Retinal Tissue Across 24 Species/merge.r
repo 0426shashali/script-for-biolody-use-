@@ -16,9 +16,6 @@ Budgerigar <- CreateSeuratObject(counts = Budgerigar@assays$RNA@counts, project 
 
 Budgerigar$stim <- "Budgerigar"
 Budgerigar <- subset(Budgerigar, subset = nFeature_RNA > 200)
-dim(Budgerigar)
-Budgerigar <- NormalizeData(Budgerigar, verbose = FALSE)
-Budgerigar <- FindVariableFeatures(Budgerigar, selection.method = "vst", nfeatures = 2000)
 
 
 stim21_matrix <-read.table("stim21_matrix_uniq_symbol.txt",head=T,row.names = 1,sep="\t")
@@ -31,16 +28,13 @@ canary <- CreateSeuratObject(counts = canary@assays$RNA@counts, project = "canar
 canary$stim <- "canary"
 canary <- subset(canary, subset = nFeature_RNA > 200)
 dim(canary)
-canary <- NormalizeData(canary, verbose = FALSE)
-canary <- FindVariableFeatures(canary, selection.method = "vst", nfeatures = 2000)
+
 
 cat <- CreateSeuratObject(counts = cat@assays$RNA@counts, project = "cat", min.cells = 3, min.features = 200)
 
 cat$stim <- "cat"
 cat <- subset(cat, subset = nFeature_RNA > 200)
 dim(cat)
-cat <- NormalizeData(cat, verbose = FALSE)
-cat <- FindVariableFeatures(cat, selection.method = "vst", nfeatures = 2000)
 
 
 chicken <- CreateSeuratObject(counts = chicken@assays$RNA@counts, project = "chicken", min.cells = 3, min.features = 200)
@@ -48,48 +42,36 @@ chicken <- CreateSeuratObject(counts = chicken@assays$RNA@counts, project = "chi
 chicken$stim <- "chicken"
 chicken <- subset(chicken, subset = nFeature_RNA > 200)
 dim(chicken)
-chicken <- NormalizeData(chicken, verbose = FALSE)
-chicken <- FindVariableFeatures(chicken, selection.method = "vst", nfeatures = 2000)
 
 duck <- CreateSeuratObject(counts = duck@assays$RNA@counts, project = "duck", min.cells = 3, min.features = 200)
 
 duck$stim <- "duck"
 duck <- subset(duck, subset = nFeature_RNA > 200)
 dim(duck)
-duck <- NormalizeData(duck, verbose = FALSE)
-duck <- FindVariableFeatures(duck, selection.method = "vst", nfeatures = 2000)
 
 human <- CreateSeuratObject(counts = human@assays$RNA@counts, project = "human", min.cells = 3, min.features = 200)
 
 human$stim <- "human"
 human <- subset(human, subset = nFeature_RNA > 200)
 dim(human)
-human <- NormalizeData(human, verbose = FALSE)
-human <- FindVariableFeatures(human, selection.method = "vst", nfeatures = 2000)
 
 mouse <- CreateSeuratObject(counts = mouse@assays$RNA@counts, project = "mouse", min.cells = 3, min.features = 200)
 
 mouse$stim <- "mouse"
 mouse <- subset(mouse, subset = nFeature_RNA > 200)
 dim(mouse)
-mouse <- NormalizeData(mouse, verbose = FALSE)
-mouse <- FindVariableFeatures(mouse, selection.method = "vst", nfeatures = 2000)
 
 snake <- CreateSeuratObject(counts = snake@assays$RNA@counts, project = "snake", min.cells = 3, min.features = 200)
 
 snake$stim <- "snake"
 snake <- subset(snake, subset = nFeature_RNA > 200)
 dim(snake)
-snake <- NormalizeData(snake, verbose = FALSE)
-snake <- FindVariableFeatures(snake, selection.method = "vst", nfeatures = 2000)
 
 snakehead <- CreateSeuratObject(counts = snakehead@assays$RNA@counts, project = "snakehead", min.cells = 3, min.features = 200)
 
 snakehead$stim <- "snakehead"
 snakehead <- subset(snakehead, subset = nFeature_RNA > 200)
 dim(snakehead)
-snakehead <- NormalizeData(snakehead, verbose = FALSE)
-snakehead <- FindVariableFeatures(snakehead, selection.method = "vst", nfeatures = 2000)
 
 
 
@@ -98,9 +80,6 @@ tilia <- CreateSeuratObject(counts = tilia@assays$RNA@counts, project = "tilia",
 tilia$stim <- "tilia"
 tilia <- subset(tilia, subset = nFeature_RNA > 200)
 dim(tilia)
-tilia <- NormalizeData(tilia, verbose = FALSE)
-tilia <- FindVariableFeatures(tilia, selection.method = "vst", nfeatures = 2000)
-
 
 
 
@@ -108,9 +87,6 @@ axolotl<-Read10X(data.dir ="./axolotl/", gene.column=1)
 stim1 <- CreateSeuratObject(counts = axolotl, project = "stim1", min.cells = 3, min.features = 200)
 stim1$stim <- "stim1"
 stim1 <- subset(stim1, subset = nFeature_RNA > 300)
-stim1 <- NormalizeData(stim1, verbose = FALSE)
-stim1 <- FindVariableFeatures(stim1, selection.method = "vst", nfeatures = 2000)
-
 
 
 stim2_matrix <-read.table("stim2_matrix.txt",head=T,sep="\t")
@@ -119,9 +95,6 @@ rownames(countData2) = make.names(stim2_matrix $X, unique=TRUE)
 stim2 <- CreateSeuratObject(counts = countData2, project = "stim2", min.cells = 3)
 stim2$stim <- "stim2"
 stim2 <- subset(stim2, subset = nFeature_RNA > 200)
-stim2 <- NormalizeData(stim2, verbose = FALSE)
-stim2 <- FindVariableFeatures(stim2, selection.method = "vst", nfeatures = 2000)
-
 
 
 
@@ -129,8 +102,6 @@ stim5_matrix<-read.table("stim5_matrix.txt",head=T,row.names = 1,sep="\t")
 stim5<- CreateSeuratObject(counts = stim5_matrix, project = "stim5", min.cells = 3)
 stim5$stim <- "stim5"
 stim5 <- subset(stim5, subset = nFeature_RNA > 200)
-stim5 <- NormalizeData(stim5, verbose = FALSE)
-stim5 <- FindVariableFeatures(stim5, selection.method = "vst", nfeatures = 2000)
 
 
 
@@ -139,26 +110,17 @@ stim6_matrix <-read.table("stim6_matrix.txt",head=T,row.names = 1,sep="\t")
 stim6<- CreateSeuratObject(counts = stim6_matrix, project = "stim6", min.cells = 3)
 stim6$stim <- "stim6"
 stim6 <- subset(stim6, subset = nFeature_RNA > 150)
-stim6 <- NormalizeData(stim6, verbose = FALSE)
-stim6 <- FindVariableFeatures(stim6, selection.method = "vst", nfeatures = 2000)
-
 
 stim7_matrix <-read.table("stim7_matrix.txt",head=T,row.names = 1,sep="\t")
 stim7<- CreateSeuratObject(counts = stim7_matrix, project = "stim7", min.cells = 3)
 stim7$stim <- "stim7"
 stim7 <- subset(stim7, subset = nFeature_RNA > 150)
-stim7 <- NormalizeData(stim7, verbose = FALSE)
-stim7 <- FindVariableFeatures(stim7, selection.method = "vst", nfeatures = 2000)
-
-
 
 stim8_matrix <-read.table("stim8_matrix.txt",head=T,row.names = 1,sep="\t")
 
 stim8<- CreateSeuratObject(counts = stim8_matrix, project = "stim8", min.cells = 3)
 stim8$stim <- "stim8"
 stim8 <- subset(stim8, subset = nFeature_RNA > 150)
-stim8 <- NormalizeData(stim8, verbose = FALSE)
-stim8 <- FindVariableFeatures(stim8, selection.method = "vst", nfeatures = 2000)
 
 
 stim11_matrix <-read.table("stim11_matrix.txt",head=T,row.names = 1,sep="\t")
@@ -166,8 +128,6 @@ stim11_matrix <-read.table("stim11_matrix.txt",head=T,row.names = 1,sep="\t")
 stim11<- CreateSeuratObject(counts = stim11_matrix, project = "stim11", min.cells = 3)
 stim11$stim <- "stim11"
 stim11 <- subset(stim11, subset = nFeature_RNA > 150)
-stim11 <- NormalizeData(stim11, verbose = FALSE)
-stim11 <- FindVariableFeatures(stim11, selection.method = "vst", nfeatures = 2000)
 
 
 
@@ -176,8 +136,6 @@ stim14_matrix <-read.table("stim14_matrix.txt",head=T,row.names = 1,sep="\t")
 stim14<- CreateSeuratObject(counts = stim14_matrix, project = "stim14", min.cells = 3)
 stim14$stim <- "stim14"
 stim14 <- subset(stim14, subset = nFeature_RNA > 200)
-stim14 <- NormalizeData(stim14, verbose = FALSE)
-stim14 <- FindVariableFeatures(stim14, selection.method = "vst", nfeatures = 2000)
 
 
 stim15_matrix <-read.table("stim15_matrix.txt",head=T,row.names = 1,sep="\t")
@@ -185,18 +143,12 @@ stim15_matrix <-read.table("stim15_matrix.txt",head=T,row.names = 1,sep="\t")
 stim15<- CreateSeuratObject(counts = stim15_matrix, project = "stim15", min.cells = 3)
 stim15$stim <- "stim15"
 stim15 <- subset(stim15, subset = nFeature_RNA > 200)
-stim15 <- NormalizeData(stim15, verbose = FALSE)
-stim15 <- FindVariableFeatures(stim15, selection.method = "vst", nfeatures = 2000)
-
 
 
 stim16_matrix <-read.table("stim16_matrix.txt",head=T,row.names = 1,sep="\t")
 stim16<- CreateSeuratObject(counts = stim16_matrix, project = "stim16", min.cells = 3)
 stim16$stim <- "stim16"
 stim16 <- subset(stim16, subset = nFeature_RNA > 150)
-stim16 <- NormalizeData(stim16, verbose = FALSE)
-stim16 <- FindVariableFeatures(stim16, selection.method = "vst", nfeatures = 2000)
-
 
 
 stim17_matrix_rename_colnames_rmove_loc_genenames<-read.table("stim17_matrix_rename_colnames_rmove_loc_genenames.txt",head=T,row.names = 1,sep="\t")
@@ -204,17 +156,12 @@ stim17_matrix_rename_colnames_rmove_loc_genenames<-read.table("stim17_matrix_ren
 stim17<- CreateSeuratObject(counts = stim17_matrix_rename_colnames_rmove_loc_genenames, project = "stim17", min.cells = 3)
 stim17$stim <- "stim17"
 stim17 <- subset(stim17, subset = nFeature_RNA > 150)
-stim17 <- NormalizeData(stim17, verbose = FALSE)
-stim17 <- FindVariableFeatures(stim17, selection.method = "vst", nfeatures = 2000)
-
 
 
 stim18_matrix <-read.table("stim18_matrix_nona.txt",head=T,row.names = 1,sep="\t")
 stim18<- CreateSeuratObject(counts = stim18_matrix, project = "stim18", min.cells = 3)
 stim18$stim <- "stim18"
 stim18 <- subset(stim18, subset = nFeature_RNA > 150)
-stim18 <- NormalizeData(stim18, verbose = FALSE)
-stim18 <- FindVariableFeatures(stim18, selection.method = "vst", nfeatures = 2000)
 
 
 
@@ -225,8 +172,6 @@ stim22_matrix <-read.table("stim22_matrix.txt",head=T,row.names = 1,sep="\t")
 stim22<- CreateSeuratObject(counts = stim22_matrix, project = "stim22", min.cells = 3)
 stim22$stim <- "stim22"
 stim22 <- subset(stim22, subset = nFeature_RNA > 150)
-stim22 <- NormalizeData(stim22, verbose = FALSE)
-stim22 <- FindVariableFeatures(stim22, selection.method = "vst", nfeatures = 2000)
 
 
 
@@ -235,7 +180,5 @@ stim24_matrix <-read.table("stim24_matrix.txt",head=T,row.names = 1,sep="\t")
 stim24<- CreateSeuratObject(counts = stim24_matrix, project = "stim24", min.cells = 3)
 stim24$stim <- "stim24"
 stim24 <- subset(stim24, subset = nFeature_RNA > 150)
-stim24 <- NormalizeData(stim24, verbose = FALSE)
-stim24 <- FindVariableFeatures(stim24, selection.method = "vst", nfeatures = 2000)
 
 pbmc.big <- merge(Budgerigar, y = c(canary, cat, chicken, duck, human, mouse, snake, snakehead, tilia, stim1, stim2, stim5, stim6, stim7, stim8, stim11, stim14, stim15, stim16, stim17, stim18, stim22, stim24), add.cell.ids = c("Budgerigar", "canary", "cat", "chicken", "duck", "human", "mouse", "snake", "snakehead", "tilia", "stim1", "stim2", "stim5", "stim6", "stim7", "stim8", "stim11", "stim14", "stim15", "stim16", "stim17", "stim18", "stim22", "stim24"), project = "merge_all_Species")
